@@ -5,6 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'poi-front';
+  mapOptions: google.maps.MapOptions = {
+    center: { lat: 38.9987208, lng: -77.2538699 },
+    zoom : 14
+ }
+ marker = {
+    position: { lat: 38.9987208, lng: -77.2538699 },
+ }
 }
