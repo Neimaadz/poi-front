@@ -9,8 +9,8 @@ import { TokenUserPayload, User } from '../models';
 })
 export class AuthenticationService {
 
-    // serverUrl = 'https://web-app-azure-test.azurewebsites.net/';
-    serverUrl = 'https://localhost:5001/';
+    serverUrl = 'https://web-app-azure-test.azurewebsites.net/';
+    // serverUrl = 'https://localhost:5001/';
     loginPath = 'api/auth/login';
     registerPath = 'api/auth/register';
     
