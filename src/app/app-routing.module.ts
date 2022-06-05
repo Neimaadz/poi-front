@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './connection/login/login.component';
 import { MapsComponent } from './maps/maps.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './connection/signin/signin.component';
+import { AuthenticationGuard } from './connection/authentication.guard';
 
 export const routes: Routes = [
     {
@@ -15,16 +16,13 @@ export const routes: Routes = [
     },
     {
         path: 'maps',
-        component: MapsComponent
-    },
-    {
-        path: '**',
-        redirectTo: 'login'
+        component: MapsComponent,
+        canActivate: [AuthenticationGuard]  // restrict path only for connected user
     }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -12,9 +12,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './connection/login/login.component';
 import { MapsComponent } from './maps/maps.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './connection/signin/signin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -26,6 +26,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { ConnectionComponent } from './connection/connection.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './error.interceptor';
 
 
 @NgModule({
@@ -33,9 +36,11 @@ import { MatRadioModule } from '@angular/material/radio';
         AppComponent,
         LoginComponent,
         MapsComponent,
-        SigninComponent
+        SigninComponent,
+        ConnectionComponent
     ],
     imports: [
+        HttpClientModule,
         MatRadioModule,
         MatSelectModule,
         MatTableModule,
@@ -60,7 +65,9 @@ import { MatRadioModule } from '@angular/material/radio';
         GoogleMapsModule,
         AppRoutingModule
     ],
-    providers: [],
+    providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
