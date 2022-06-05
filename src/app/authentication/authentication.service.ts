@@ -9,7 +9,7 @@ import { TokenUserPayload, User } from '../models';
 })
 export class AuthenticationService {
 
-    serverUrl = 'https://aspnet-core-poi-api.azurewebsites.net/';
+    serverUrl = 'https://app-poi-api.azurewebsites.net/';
     // serverUrl = 'https://localhost:5001/';
     loginPath = 'api/auth/login';
     registerPath = 'api/auth/register';
