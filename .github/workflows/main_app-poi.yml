@@ -59,4 +59,5 @@ jobs:
           app-name: 'app-poi'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9048026D4CE8418B9898A7A91332E010 }}
-          package: .
+          package: ./dist/poi-front
+
