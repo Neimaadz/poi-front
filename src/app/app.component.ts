@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './authentication/authentication.service';
+import { User } from './models';
 
 @Component({
   selector: 'app-root',
@@ -7,15 +10,18 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'poi-front';
-  // Options de la carte
-  // On met la position du POI en attribut center de façon à être centré dessus
-  mapOptions: google.maps.MapOptions = {
-    center: { lat: 38.9987208, lng: -77.2538699 },
-    zoom : 14
- }
-  // Attributs du marker, le plus important est la position
-  marker = {
-    position: { lat: 38.9987208, lng: -77.2538699 },
- }
+    currentUser: User | null;
+
+    constructor(
+        private router: Router,
+        private authenticationService: AuthenticationService) {
+        this.authenticationService.currentUserSubject.subscribe((user: User | null) => {
+            this.currentUser = this.authenticationService.currentUserValue
+        });
+    }
+
+    logout(){
+        this.authenticationService.logout();
+        this.router.navigate(['/']);
+    }
 }

@@ -4,17 +4,72 @@ import { GoogleMapsModule } from '@angular/google-maps';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule} from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { LoginComponent } from './authentication/login/login.component';
+import { MapsComponent } from './maps/maps.component';
+import { SigninComponent } from './authentication/signin/signin.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './error.interceptor';
+import { HomepageComponent } from './homepage/homepage.component';
+
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    GoogleMapsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        MapsComponent,
+        SigninComponent,
+        AuthenticationComponent,
+        HomepageComponent
+    ],
+    imports: [
+        HttpClientModule,
+        MatRadioModule,
+        MatSelectModule,
+        MatTableModule,
+        MatSortModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatDatepickerModule,
+        FormsModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatSidenavModule,
+        MatListModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatCardModule,
+        CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        GoogleMapsModule,
+        AppRoutingModule
+    ],
+    providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
