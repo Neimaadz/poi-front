@@ -23,6 +23,7 @@ jobs:
 
       - name: npm install, build
         run: |
+          npm audit fix --force
           npm install
           npm run build --prod
         working-directory: .
