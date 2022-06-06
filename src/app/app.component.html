@@ -5,7 +5,7 @@
       <button mat-icon-button>
             <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
       </button>
-      <span class="title">POI Travel</span>
+      <a class="title" [routerLink]="'/'"><span>POI Travel</span></a>
       <div *ngIf="!currentUser; else user" class="right-buttons">
             <button mat-button [routerLink]="'/login'">Login</button>
             <button mat-button [routerLink]="'/signin'">Signin</button>

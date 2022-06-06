@@ -29,6 +29,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './error.interceptor';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ErrorInterceptor } from './error.interceptor';
         LoginComponent,
         MapsComponent,
         SigninComponent,
-        AuthenticationComponent
+        AuthenticationComponent,
+        HomepageComponent
     ],
     imports: [
         HttpClientModule,
