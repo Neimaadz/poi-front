@@ -4,8 +4,13 @@ import { LoginComponent } from './authentication/login/login.component';
 import { MapsComponent } from './maps/maps.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { AuthenticationGuard } from './authentication/authentication.guard';
+import { HomepageComponent } from './homepage/homepage.component';
 
 export const routes: Routes = [
+    {
+        path: '',
+        component: HomepageComponent
+    },
     {
         path: 'login',
         component: LoginComponent
