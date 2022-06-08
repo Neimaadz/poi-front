@@ -1,0 +1,18 @@
+
+<main>
+    <div class="container">
+        <mat-grid-list #grid [cols]="cols | async" rowHeight="400px" [gutterSize]="'20px'" >
+            <mat-grid-tile *ngFor="let poi of pois">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{poi.name}}</mat-card-title>
+                    </mat-card-header>
+                    <img mat-card-image src={{poi.imagePath}} alt={{poi.name}}>
+                    <mat-card-content>
+                        {{poi.comment}}
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</main>

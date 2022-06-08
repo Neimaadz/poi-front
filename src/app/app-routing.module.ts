@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { MapsComponent } from './maps/maps.component';
+import { PoiComponent } from './poi/poi.component';
 import { SigninComponent } from './signin/signin.component';
 
 export const routes: Routes = [
@@ -12,6 +13,10 @@ export const routes: Routes = [
     {
         path: 'signin',
         component: SigninComponent
+    },
+    {
+        path: 'poi',
+        component: PoiComponent
     },
     {
         path: 'maps',
@@ -25,6 +30,6 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 export class AppRoutingModule { }
