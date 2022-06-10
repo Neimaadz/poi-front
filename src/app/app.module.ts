@@ -31,6 +31,7 @@ import { PoiComponent } from './poi/poi.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PoiCreateComponent } from './poi/poi-create/poi-create.component';
+import { PoiEditComponent } from './poi/poi-edit/poi-edit.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import { PoiCreateComponent } from './poi/poi-create/poi-create.component';
         SigninComponent,
         PoiComponent,
         PoiCreateComponent,
+        PoiEditComponent,
     ],
     imports: [
         MatGridListModule,

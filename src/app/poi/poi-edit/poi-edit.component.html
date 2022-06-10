@@ -1,7 +1,7 @@
 <main>
     <div class="container">
       <div class="mat-typography"><h1>Ajouter un point d'intérêt</h1></div>
-      <form [formGroup]="poiForm" (ngSubmit)="addPoi()">
+      <form [formGroup]="poiForm" (ngSubmit)="editPoi()">
         <mat-form-field appearance="outline">
             <mat-label>Nom</mat-label>
             <input matInput id="name" name="name" formControlName="name" placeholder="Nom" type="text">
@@ -15,17 +15,17 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Image</mat-label>
-            <input matInput id="imagePath" name="imagePath" formControlName="imagePath" placeholder="Image" type="text" >
+            <input matInput id="imagePath" name="imagePath" formControlName="imagePath" placeholder="Image" type="text">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Latitude</mat-label>
-            <input matInput id="lat" name="lat" formControlName="lat" placeholder="latitude" type="number" >
+            <input matInput id="lat" name="lat" formControlName="lat" placeholder="latitude" type="number">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Longitude</mat-label>
-            <input matInput id="lng" name="lng" formControlName="lng" placeholder="longitude" type="number" >
+            <input matInput id="lng" name="lng" formControlName="lng" placeholder="longitude" type="number">
         </mat-form-field>
   
         <button mat-raised-button type="submit">Valider</button>

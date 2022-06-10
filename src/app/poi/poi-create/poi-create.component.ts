@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PoiService } from '../poi.service';
 
 @Component({
@@ -9,10 +10,11 @@ import { PoiService } from '../poi.service';
 })
 export class PoiCreateComponent implements OnInit {
 
-  postForm: FormGroup;
+  poiForm: FormGroup;
+  error = '';
 
-  constructor(private fb: FormBuilder, private poiService: PoiService) {
-    this.postForm = this.fb.group({
+  constructor(private fb: FormBuilder, private poiService: PoiService, private router: Router) {
+    this.poiForm = this.fb.group({
       name: '',
       comment: '',
       imagePath: '',
@@ -20,19 +22,17 @@ export class PoiCreateComponent implements OnInit {
       lng:''
     })
   }
-  error = '';
 
   ngOnInit(): void {
   }
 
   addPoi() {
-    const postData = this.postForm.value;
-    // console.log et console.error sont juste temporaires
-    // idéalement, on afficherait une notification de succès
-    this.poiService.createPoi(postData)
+    const poiData = this.poiForm.value;
+    this.poiService.createPoi(poiData)
     .subscribe({
       next: poi => {
-        console.log(`post created with id ${poi.id}`);
+        console.log(`poi created with id ${poi.id}`);
+        this.router.navigate(['poi']);
       },
       error: error => {
         this.error = error;

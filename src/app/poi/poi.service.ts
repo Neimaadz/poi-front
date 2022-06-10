@@ -14,7 +14,7 @@ export class PoiService {
   // URL absolue
   serverUrl = 'https://app-poi-api.azurewebsites.net/';
   // chemin relatif sur le serveur
-  postsPath = '/api/poi';
+  poisPath = '/api/poi';
 
   constructor(
     private http: HttpClient,
@@ -38,7 +38,7 @@ export class PoiService {
         errorMessage = 'There are missing or misformated fields.';
         break;
       case 404:
-        errorMessage = 'This post does not exist anymore.';
+        errorMessage = 'This poi does not exist anymore.';
         break;
       default:
         errorMessage = 'An unexpected error occurred.';
@@ -49,35 +49,43 @@ export class PoiService {
   getAllPoi(): Observable<Poi[]> {
     return this.http
       .get<Poi[]>(
-        `${this.serverUrl}${this.postsPath}`
+        `${this.serverUrl}${this.poisPath}`
       );
   }
 
-  getPoi(postId: number): Observable<Poi> {
+  getPoi(poiId: number): Observable<Poi> {
     return this.http
       .get<Poi>(
-        `${this.serverUrl}${this.postsPath}/${postId}`
+        `${this.serverUrl}${this.poisPath}/${poiId}`
       )
       .pipe(
         catchError(error => this.handleError(error))
       );
   }
 
-  createPoi(postData: Partial<Poi>): Observable<Poi> {
+  createPoi(poiData: Partial<Poi>): Observable<Poi> {
     return this.http
       .post<Poi>(
-        `${this.serverUrl}${this.postsPath}`,
-        postData,
+        `${this.serverUrl}${this.poisPath}`,
+        poiData,
       )
       .pipe(
         catchError(error => this.handleError(error))
       );
+  }
+
+  editPoi(poiData: Partial<Poi>, id: number): Observable<any> {
+    return this.http
+      .put(`${this.serverUrl}${this.poisPath}/${id}`, poiData)
+      .pipe(
+          catchError(error => this.handleError(error))
+        );
   }
 
   deletePoi(poiId: number): Observable<void> {
     return this.http
       .delete<void>(
-        `${this.serverUrl}${this.postsPath}/${poiId}`,
+        `${this.serverUrl}${this.poisPath}/${poiId}`,
       )
       .pipe(
         catchError(error => this.handleError(error))
