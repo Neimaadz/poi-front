@@ -1,6 +1,8 @@
 
 <main>
     <div class="container">
+        <div *ngIf="error">{{ error }}</div>
+        <a mat-raised-button href="poi/create">Créer un nouveau point d'intérêt</a>
         <mat-grid-list #grid [cols]="cols | async" rowHeight="400px" [gutterSize]="'20px'" >
             <mat-grid-tile *ngFor="let poi of pois">
                 <mat-card>
@@ -11,6 +13,9 @@
                     <mat-card-content>
                         {{poi.comment}}
                     </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="warn" (click)="delete($event)" id="{{poi.id}}" >Supprimer</button>
+                    </mat-card-actions>
                 </mat-card>
             </mat-grid-tile>
         </mat-grid-list>

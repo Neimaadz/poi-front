@@ -1,0 +1,30 @@
+label, input {
+  display: block;
+}
+
+label {
+  margin-bottom: .25em;
+}
+
+input {
+  margin-bottom: .75em;
+}
+
+.container {
+  padding: 50px;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.mat-form-field {
+  padding: 5px 0px 25px 2px;
+  width: 100%;
+}
+
+.button {
+  width: 100%;
+}

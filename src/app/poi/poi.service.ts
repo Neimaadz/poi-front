@@ -74,10 +74,10 @@ export class PoiService {
       );
   }
 
-  deletePoi(postId: number): Observable<void> {
+  deletePoi(poiId: number): Observable<void> {
     return this.http
       .delete<void>(
-        `${this.serverUrl}${this.postsPath}/${postId}`,
+        `${this.serverUrl}${this.postsPath}/${poiId}`,
       )
       .pipe(
         catchError(error => this.handleError(error))

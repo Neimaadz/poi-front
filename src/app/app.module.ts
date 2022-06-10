@@ -30,6 +30,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { PoiComponent } from './poi/poi.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { PoiCreateComponent } from './poi/poi-create/poi-create.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MapsComponent,
         SigninComponent,
         PoiComponent,
+        PoiCreateComponent,
     ],
     imports: [
         MatGridListModule,

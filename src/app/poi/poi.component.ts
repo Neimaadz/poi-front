@@ -18,7 +18,8 @@ export class PoiComponent implements OnInit {
   pois: Poi[] = [];
   @ViewChild('grid', { static: true })
   grid!: MatGridList;
-  cols:Subject<any> = new Subject();
+  cols: Subject<any> = new Subject();
+  error = '';
 
   gridByBreakpoint : plotOptions = {
     xl: 4,
@@ -40,5 +41,21 @@ export class PoiComponent implements OnInit {
       .subscribe(pois => {
         this.pois = pois;
       });
+  }
+
+  delete(event: any) {
+    this.poiService.deletePoi(event.target.id)
+    .subscribe({
+      next: () => {
+        console.log('id of post to delete', event.target.id);
+
+        this.pois = this.pois.filter(
+          poi => poi.id !== event.target.id
+        );
+      },
+      error: (error) => {
+        this.error = error;
+      }
+    })
   }
 }
