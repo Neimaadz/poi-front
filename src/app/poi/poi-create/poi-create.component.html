@@ -18,6 +18,12 @@
             <input matInput id="imagePath" name="imagePath" formControlName="imagePath" placeholder="Image" type="text" >
         </mat-form-field>
 
+        <div class="form-group">
+            <label for="file">Choisir un fichier</label>
+            <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <input style="display: none;" #fileInput type="file" id="file">
+        </div>
+
         <mat-form-field appearance="outline">
             <mat-label>Latitude</mat-label>
             <input matInput id="lat" name="lat" formControlName="lat" placeholder="latitude" type="number" >
@@ -28,7 +34,7 @@
             <input matInput id="lng" name="lng" formControlName="lng" placeholder="longitude" type="number" >
         </mat-form-field>
   
-        <button mat-raised-button type="submit">Valider</button>
+        <button mat-raised-button color="primary" type="submit">Valider</button>
   
         <mat-error *ngIf="error">{{ error }}</mat-error>
       </form>

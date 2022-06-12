@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, Inject, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatGridList } from '@angular/material/grid-list';
 import { Poi } from 'src/types';
 import { PoiService } from './poi.service';
@@ -44,18 +44,21 @@ export class PoiComponent implements OnInit {
   }
 
   delete(event: any) {
-    this.poiService.deletePoi(event.target.id)
+    const id = event.currentTarget?.id;
+    this.poiService.deletePoi(id)
     .subscribe({
       next: () => {
-        console.log('id of post to delete', event.target.id);
+        console.log('id of post to delete', id);
 
         this.pois = this.pois.filter(
-          poi => poi.id !== event.target.id
+          poi => poi.id !== id
         );
+
+        this.ngOnInit();
       },
       error: (error) => {
         this.error = error;
       }
     })
-  }
+  } 
 }
