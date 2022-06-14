@@ -3,9 +3,11 @@
     On y ajoute les options de carte et la position du marker
     Ces données sont définies dans app.component.ts
 -->
-{{ pois[1].name }}
 <div class="my-google-map">
-    <google-map [options]="mapOptions">
+    <google-map
+    height="800px"
+    width="100%"
+     [options]="mapOptions">
        <map-marker 
             #markerElem="mapMarker"
             *ngFor="let marker of markers"

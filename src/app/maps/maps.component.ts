@@ -8,6 +8,8 @@ import { MapMarker } from '@angular/google-maps';
 import { GoogleMap } from '@angular/google-maps';
 import { MapInfoWindow } from '@angular/google-maps';
 import { map } from 'rxjs';
+import { waitForAsync } from '@angular/core/testing';
+import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select/select';
 
 @Component({
   selector: 'app-maps',
@@ -27,34 +29,29 @@ export class MapsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.showPois(); 
-      this.addMarker();
-      this.addPoi(this.pois[0]);
+      this.showPois();
     }
 
-    async showPois() {
-      await this.mapService.getPois()
-      .then((myPoi: Poi[]) => {
-        this.pois = myPoi
-      })
+    // 
+    showPois() {
+      this.mapService.getPois()
+      .subscribe(pois => {
+        this.pois = pois;
+        this.update();
+      });
     }
 
-    addMarker() {
-      this.markers.push({
-        position: {
-          lat:  ((Math.random() - 0.5) * 2) ,
-          lng:  ((Math.random() - 0.5) * 2) ,
-        },
-        label: {
-          color: 'red',
-          text: 'Marker label ' + (this.markers.length + 1),
-        },
-        title: 'Marker title ' + (this.markers.length + 1),
-        info: 'Marker Info' + (this.markers.length + 1),
-        options: { animation: google.maps.Animation.DROP },
-      })
+    // Permet d'appeler addPoi avec les infos récupérées
+    update() {
+      console.log(this.pois);
+
+      this.pois.forEach(poi => {
+        this.addPoi(poi);
+      });
+      
     }
 
+    // Ajoute le POI sur la carte
     addPoi(myPoi: Poi) {
       this.markers.push({
         position: {
@@ -62,11 +59,11 @@ export class MapsComponent implements OnInit {
           lng:  myPoi.lng ,
         },
         label: {
-          color: 'red',
-          text: myPoi.name + (this.markers.length + 1),
+          color: 'black',
+          text: myPoi.name,
         },
-        title: myPoi.name + (this.markers.length + 1),
-        info: myPoi.comment + (this.markers.length + 1),
+        title: myPoi.name,
+        info: myPoi.comment,
         options: { animation: google.maps.Animation.DROP },
       })
     }
@@ -80,8 +77,9 @@ export class MapsComponent implements OnInit {
     // Options de la carte
     // On met la position du POI en attribut center de façon à être centré dessus
     mapOptions: google.maps.MapOptions = {
-      center: { lat: 0, lng: 0 },
-      zoom : 3
+      center: { lat: 49, lng: 2 },
+      zoom : 3,
+      minZoom : 3
    }
 
 }

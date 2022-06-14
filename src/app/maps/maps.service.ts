@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Poi } from '../models';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,10 @@ export class MapsService {
   serverUrl = 'https://app-poi-api.azurewebsites.net/';
   poiPath = 'api/poi';
     
-  public getPois(): Promise<Poi[]> | any {
-    return this.http.get<Poi[]>(`${this.serverUrl}${this.poiPath}`).toPromise();
+  public getPois(): Observable<Poi[]> {
+    return this.http
+      .get<Poi[]>(
+        `${this.serverUrl}${this.poiPath}`
+      );
   }
 }
