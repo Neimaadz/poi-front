@@ -18,25 +18,25 @@ export class MapsComponent implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
 
-    pois: Poi[];
+    pois: Poi[] = [];
     markers = [] as any
     infoContent = ''
 
     constructor(private mapService: MapsService) {
-            
+       
     }
 
     ngOnInit(): void {
-      this.showPois();  
+      this.showPois(); 
       this.addMarker();
       this.addPoi(this.pois[0]);
     }
 
-    showPois() {
-      this.mapService.getPois()
-      .subscribe((data: Poi[]) => this.pois = {
-          ...data
-      });
+    async showPois() {
+      await this.mapService.getPois()
+      .then((myPoi: Poi[]) => {
+        this.pois = myPoi
+      })
     }
 
     addMarker() {
