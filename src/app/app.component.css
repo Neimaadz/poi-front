@@ -1,16 +1,26 @@
-mat-sidenav-container, mat-sidenav-content, mat-sidenav {
-    height: 100%;
-}
+
 mat-sidenav {
     width: 250px;
 }
 
 .title {
     margin-left: 1em;
+    text-decoration: none;
+    color: white;
 }
 
 .right-buttons {
     position: absolute;
     right: 0px;
     margin-right: 1em;
+}
+
+.user_profile {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.username {
+    display: block;
+    font-size: large;
 }

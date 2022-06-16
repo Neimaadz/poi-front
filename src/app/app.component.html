@@ -3,20 +3,41 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
       <button mat-icon-button>
-        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+            <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
       </button>
-      <span class="title">POI Travel</span>
-      <div class="right-buttons">
-        <button mat-button [routerLink]="'/login'">Login</button>
-        <button mat-button [routerLink]="'/signin'">Signin</button>
+      <a class="title" [routerLink]="'/'"><span>POI Travel</span></a>
+      <div *ngIf="!currentUser; else user" class="right-buttons">
+            <button mat-button [routerLink]="'/login'">Login</button>
+            <button mat-button [routerLink]="'/signin'">Signin</button>
       </div>
+      <ng-template #user>
+          <div class="right-buttons">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <div class="user_profile">
+                        <mat-icon>account_circle</mat-icon>
+                        <span class="username">{{ currentUser?.username }}</span>
+                    </div>
+                    <button mat-menu-item>
+                        <mat-icon>settings</mat-icon>
+                        <span>Settings</span>
+                    </button>
+                    <button mat-menu-item (click)="logout()">
+                        <mat-icon>logout</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </div>
+      </ng-template>
     </mat-toolbar-row>
 </mat-toolbar>
 
 <!-- ------------------------------ SIDE-NAV ------------------------------ -->
   
 <mat-sidenav-container>
-    <mat-sidenav #sidenav role="navigation">
+    <mat-sidenav #sidenav [fixedInViewport]="true" mode="over">
         <mat-nav-list>
             <a mat-list-item [routerLink]="'/poi'"> Point d'interêts </a>
             <a mat-list-item [routerLink]="'/maps'"> Maps </a>

@@ -13,9 +13,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './authentication/login/login.component';
 import { MapsComponent } from './maps/maps.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './authentication/signin/signin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -28,11 +28,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { PoiComponent } from './poi/poi.component';
-import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PoiCreateComponent } from './poi/poi-create/poi-create.component';
 import { PoiEditComponent } from './poi/poi-edit/poi-edit.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './error.interceptor';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
     declarations: [
@@ -44,9 +47,12 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
         PoiCreateComponent,
         PoiEditComponent,
         FileUploadComponent,
+        AuthenticationComponent,
+        HomepageComponent
     ],
     imports: [
         MatGridListModule,
+        HttpClientModule,
         MatRadioModule,
         MatSelectModule,
         MatTableModule,
@@ -73,7 +79,9 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
         HttpClientModule,
         FlexLayoutModule,
     ],
-    providers: [],
+    providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
