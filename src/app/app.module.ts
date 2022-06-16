@@ -32,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PoiCreateComponent } from './poi/poi-create/poi-create.component';
 import { PoiEditComponent } from './poi/poi-edit/poi-edit.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { PoiEditComponent } from './poi/poi-edit/poi-edit.component';
         PoiComponent,
         PoiCreateComponent,
         PoiEditComponent,
+        FileUploadComponent,
     ],
     imports: [
         MatGridListModule,

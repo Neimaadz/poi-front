@@ -14,11 +14,6 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-            <mat-label>Image</mat-label>
-            <input matInput id="imagePath" name="imagePath" formControlName="imagePath" placeholder="Image" type="text" >
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
             <mat-label>Latitude</mat-label>
             <input matInput id="lat" name="lat" formControlName="lat" placeholder="latitude" type="number" >
         </mat-form-field>
@@ -27,6 +22,8 @@
             <mat-label>Longitude</mat-label>
             <input matInput id="lng" name="lng" formControlName="lng" placeholder="longitude" type="number" >
         </mat-form-field>
+
+        <app-file-upload (newFileEvent)="onNewFile($event)" ></app-file-upload>
   
         <button mat-raised-button color="primary" type="submit">Valider</button>
   

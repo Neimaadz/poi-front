@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { PoiService } from '../poi.service';
 
 @Component({
@@ -11,24 +11,32 @@ import { PoiService } from '../poi.service';
 export class PoiCreateComponent implements OnInit {
 
   poiForm: FormGroup;
+  file!: File;
   error = '';
 
   constructor(private fb: FormBuilder, private poiService: PoiService, private router: Router) {
     this.poiForm = this.fb.group({
       name: '',
       comment: '',
-      imagePath: '',
       lat: '',
       lng:''
     })
   }
 
   ngOnInit(): void {
+    this.poiForm.setValue({
+      name:"",
+      comment: "",
+      lat: 0,
+      lng: 0
+    });
   }
 
   addPoi() {
     const poiData = this.poiForm.value;
-    this.poiService.createPoi(poiData)
+    poiData.image = this.file;
+    console.log(this.poiForm.value);
+    this.poiService.createPoi(poiData, this.file)
     .subscribe({
       next: poi => {
         console.log(`poi created with id ${poi.id}`);
@@ -40,4 +48,7 @@ export class PoiCreateComponent implements OnInit {
     });
   }
 
+  onNewFile(file: File) {
+    this.file = file;
+  }
 }

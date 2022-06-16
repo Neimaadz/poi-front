@@ -6,13 +6,14 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 // import { AuthenticationService } from './authentication.service';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PoiService {
   // URL absolue
-  serverUrl = 'https://app-poi-api.azurewebsites.net/';
+  serverUrl = environment.apiURL;
   // chemin relatif sur le serveur
   poisPath = '/api/poi';
 
@@ -63,11 +64,14 @@ export class PoiService {
       );
   }
 
-  createPoi(poiData: Partial<Poi>): Observable<Poi> {
+  createPoi(poiData: any, image: File): Observable<Poi> {
+    const formData: FormData = new FormData();
+    Object.keys(poiData).forEach((key)=>{formData.append(key,poiData[key])});
+    formData.append("Image", image, image.name);
     return this.http
       .post<Poi>(
         `${this.serverUrl}${this.poisPath}`,
-        poiData,
+        formData,
       )
       .pipe(
         catchError(error => this.handleError(error))

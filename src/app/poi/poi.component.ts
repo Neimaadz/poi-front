@@ -4,6 +4,7 @@ import { Poi } from 'src/types';
 import { PoiService } from './poi.service';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subject } from 'rxjs';
+import { environment } from './../../environments/environment';
 
 type plotOptions = {
   [key: string]: number
@@ -20,6 +21,7 @@ export class PoiComponent implements OnInit {
   grid!: MatGridList;
   cols: Subject<any> = new Subject();
   error = '';
+  apiURL = environment.apiURL;
 
   gridByBreakpoint : plotOptions = {
     xl: 4,
