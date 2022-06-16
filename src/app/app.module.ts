@@ -5,6 +5,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule} from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -26,11 +27,15 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { PoiComponent } from './poi/poi.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { PoiCreateComponent } from './poi/poi-create/poi-create.component';
+import { PoiEditComponent } from './poi/poi-edit/poi-edit.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './error.interceptor';
 import { HomepageComponent } from './homepage/homepage.component';
-
 
 @NgModule({
     declarations: [
@@ -38,10 +43,15 @@ import { HomepageComponent } from './homepage/homepage.component';
         LoginComponent,
         MapsComponent,
         SigninComponent,
+        PoiComponent,
+        PoiCreateComponent,
+        PoiEditComponent,
+        FileUploadComponent,
         AuthenticationComponent,
         HomepageComponent
     ],
     imports: [
+        MatGridListModule,
         HttpClientModule,
         MatRadioModule,
         MatSelectModule,
@@ -65,7 +75,9 @@ import { HomepageComponent } from './homepage/homepage.component';
         BrowserModule,
         BrowserAnimationsModule,
         GoogleMapsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpClientModule,
+        FlexLayoutModule,
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
