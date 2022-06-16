@@ -5,7 +5,7 @@ import { MapsComponent } from './maps/maps.component';
 import { PoiCreateComponent } from './poi/poi-create/poi-create.component';
 import { PoiEditComponent } from './poi/poi-edit/poi-edit.component';
 import { PoiComponent } from './poi/poi.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './authentication/signin/signin.component';
 import { AuthenticationGuard } from './authentication/authentication.guard';
 import { HomepageComponent } from './homepage/homepage.component';
 
