@@ -4,22 +4,21 @@
     Ces données sont définies dans app.component.ts
 -->
 <div class="my-google-map">
-    <google-map [options]="mapOptions">
-       <map-marker [position]="marker.position"></map-marker>
-    </google-map>
-</div>
-<div class="my-google-map">
-    <google-map [options]="mapOptions">
-       <map-marker [position]="marker.position"></map-marker>
-    </google-map>
-</div>
-<div class="my-google-map">
-    <google-map [options]="mapOptions">
-       <map-marker [position]="marker.position"></map-marker>
-    </google-map>
-</div>
-<div class="my-google-map">
-    <google-map [options]="mapOptions">
-       <map-marker [position]="marker.position"></map-marker>
+    <google-map
+    height="800px"
+    width="100%"
+     [options]="mapOptions">
+       <map-marker 
+            #markerElem="mapMarker"
+            *ngFor="let marker of markers"
+            [position]="marker.position"
+            [label]="marker.label"
+            [title]="marker.title"
+            [options]="marker.options"
+            (mapClick)="openInfo(markerElem, marker.info)"
+       >
+
+       </map-marker>
+       <map-info-window>{{ infoContent }}</map-info-window>
     </google-map>
 </div>
