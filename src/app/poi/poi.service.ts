@@ -67,7 +67,8 @@ export class PoiService {
   createPoi(poiData: any, image: File): Observable<Poi> {
     const formData: FormData = new FormData();
     Object.keys(poiData).forEach((key)=>{formData.append(key,poiData[key])});
-    formData.append("Image", image, image.name);
+    if (image) formData.append("Image", image, image.name)
+    else formData.append("Image", "");
     return this.http
       .post<Poi>(
         `${this.serverUrl}${this.poisPath}`,
@@ -78,12 +79,19 @@ export class PoiService {
       );
   }
 
-  editPoi(poiData: Partial<Poi>, id: number): Observable<any> {
+  editPoi(poiData: any, image: File, id: number): Observable<any> {
+    const formData: FormData = new FormData();
+    Object.keys(poiData).forEach((key) => { formData.append(key, poiData[key]) });
+    if (image) formData.append("Image", image, image.name)
+    else formData.append("Image", "");
     return this.http
-      .put(`${this.serverUrl}${this.poisPath}/${id}`, poiData)
+      .put(`${this.serverUrl}${this.poisPath}/${id}`, formData)
       .pipe(
-          catchError(error => this.handleError(error))
-        );
+        catchError(error => {
+          console.log(error);
+          return this.handleError(error)
+        })
+      );
   }
 
   deletePoi(poiId: number): Observable<void> {

@@ -4,23 +4,23 @@
       <form [formGroup]="poiForm" (ngSubmit)="addPoi()">
         <mat-form-field appearance="outline">
             <mat-label>Nom</mat-label>
-            <input matInput id="name" name="name" formControlName="name" placeholder="Nom" type="text">
+            <input matInput id="name" name="name" formControlName="name" placeholder="Nom" type="text" required>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Commentaire</mat-label>
-            <textarea matInput id="comment" name="comment" formControlName="comment" placeholder="Commentaire" rows="4">
+            <textarea matInput id="comment" name="comment" formControlName="comment" placeholder="Commentaire" rows="4" required>
             </textarea>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Latitude</mat-label>
-            <input matInput id="lat" name="lat" formControlName="lat" placeholder="latitude" type="number" >
+            <input matInput id="lat" name="lat" formControlName="lat" placeholder="latitude" type="number" required>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Longitude</mat-label>
-            <input matInput id="lng" name="lng" formControlName="lng" placeholder="longitude" type="number" >
+            <input matInput id="lng" name="lng" formControlName="lng" placeholder="longitude" type="number" required>
         </mat-form-field>
 
         <app-file-upload (newFileEvent)="onNewFile($event)" ></app-file-upload>
