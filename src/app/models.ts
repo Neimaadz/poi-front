@@ -1,4 +1,5 @@
 export class User {
+    id: number
     username!: string;
     password!: string;
     token!: string;
@@ -10,9 +11,11 @@ export interface TokenUserPayload {
 }
 
 export class Poi {
+    id!: number;
+    userId!: number;
     name!: string;
     imagePath!: string;
     comment!: string;
-    lat!: number;
-    lng!: number;
+    lat!: string;
+    lng!: string;
 }

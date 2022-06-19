@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
-import { Poi } from '../../types';
+import { Poi } from '../models';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -79,18 +79,15 @@ export class PoiService {
       );
   }
 
-  editPoi(poiData: any, image: File, id: number): Observable<any> {
+  editPoi(poiData: any, image: File, id: number): Observable<Poi> {
     const formData: FormData = new FormData();
     Object.keys(poiData).forEach((key) => { formData.append(key, poiData[key]) });
     if (image) formData.append("Image", image, image.name)
     else formData.append("Image", "");
     return this.http
-      .put(`${this.serverUrl}${this.poisPath}/${id}`, formData)
+      .put<Poi>(`${this.serverUrl}${this.poisPath}/${id}`, formData)
       .pipe(
-        catchError(error => {
-          console.log(error);
-          return this.handleError(error)
-        })
+        catchError(error => this.handleError(error))
       );
   }
 

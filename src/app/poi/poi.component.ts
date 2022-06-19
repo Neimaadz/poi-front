@@ -1,10 +1,12 @@
 import { AfterContentInit, Component, Inject, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatGridList } from '@angular/material/grid-list';
-import { Poi } from 'src/types';
+import { Poi } from '../models';
 import { PoiService } from './poi.service';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subject } from 'rxjs';
 import { environment } from './../../environments/environment';
+import { AuthenticationService } from '../authentication/authentication.service'
+import { User } from '../models';
 
 type plotOptions = {
   [key: string]: number
@@ -22,6 +24,7 @@ export class PoiComponent implements OnInit {
   cols: Subject<any> = new Subject();
   error = '';
   apiURL = environment.apiURL;
+  currentUser: User | null;
 
   gridByBreakpoint : plotOptions = {
     xl: 4,
@@ -31,8 +34,11 @@ export class PoiComponent implements OnInit {
     xs: 1
   }
 
-  constructor(private poiService: PoiService, private MediaObserver: MediaObserver) {
+  constructor(private poiService: PoiService, private MediaObserver: MediaObserver, private authenticationService :AuthenticationService ) {
     this.cols.next(4);
+    this.authenticationService.currentUserSubject.subscribe((user: User | null) => {
+        this.currentUser = this.authenticationService.currentUserValue
+    });
   }
 
   ngOnInit() {

@@ -5,7 +5,7 @@
 -->
 <div class="my-google-map">
     <google-map
-    height="800px"
+    height="92vh"
     width="100%"
      [options]="mapOptions">
        <map-marker 
@@ -15,10 +15,16 @@
             [label]="marker.label"
             [title]="marker.title"
             [options]="marker.options"
-            (mapClick)="openInfo(markerElem, marker.info)"
+            (mapClick)="openInfo(markerElem, marker.title, marker.comment, marker.image)"
        >
 
        </map-marker>
-       <map-info-window>{{ infoContent }}</map-info-window>
+       <map-info-window class="map-info-window">
+        <img mat-card-image src="{{apiURL +'/'+ poi.imagePath}}">
+        <div class="poi-info">
+            <span class="name">{{ poi.name }}</span>
+            <span class="comment">{{ poi.comment }}</span>
+        </div>
+       </map-info-window>
     </google-map>
 </div>

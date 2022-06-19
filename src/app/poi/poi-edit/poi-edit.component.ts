@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Poi } from 'src/types';
+import { Poi } from '../../models';
 import { PoiService } from '../poi.service';
 
 @Component({
@@ -49,7 +49,7 @@ export class PoiEditComponent implements OnInit {
 
   editPoi() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    let poiData = this.poiForm.value;
+    const poiData = this.poiForm.value;
     poiData["id"] = id;
     console.log(poiData);
     this.poiService.editPoi(poiData,this.file,id)
