@@ -2,6 +2,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { TokenUserPayload, User } from '../models';
 
 @Injectable({
@@ -9,10 +10,9 @@ import { TokenUserPayload, User } from '../models';
 })
 export class AuthenticationService {
 
-    serverUrl = 'https://app-poi-api.azurewebsites.net/';
-    // serverUrl = 'https://localhost:5001/';
-    loginPath = 'api/auth/login';
-    registerPath = 'api/auth/register';
+    serverUrl = environment.apiURL;
+    loginPath = '/api/auth/login';
+    registerPath = '/api/auth/register';
     
     public currentUserSubject: BehaviorSubject<User | null>;
     public token: string = localStorage.getItem('token') || '';
