@@ -1,7 +1,9 @@
 <div class="file-upload">
-  <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+  <div class="mat-typography"> Image* : </div>
 
-   {{fileName || "No file uploaded yet."}}
+  <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload required>
+
+    {{fileName || "Aucun fichier n'a encore été téléchargé."}}
 
     <button mat-mini-fab color="second" class="upload-btn" type="button"
       (click)="fileUpload.click()">

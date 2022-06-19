@@ -34,7 +34,6 @@ export class PoiCreateComponent implements OnInit {
 
   addPoi() {
     const poiData = this.poiForm.value;
-    poiData.image = this.file;
     console.log(this.poiForm.value);
     this.poiService.createPoi(poiData, this.file)
     .subscribe({
