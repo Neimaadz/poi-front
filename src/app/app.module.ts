@@ -36,6 +36,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './error.interceptor';
 import { HomepageComponent } from './homepage/homepage.component';
+import { JwtInterceptor } from './jwt.interceptor';
 
 @NgModule({
     declarations: [
@@ -80,7 +81,8 @@ import { HomepageComponent } from './homepage/homepage.component';
         FlexLayoutModule,
     ],
     providers: [
-      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
     ],
     bootstrap: [AppComponent]
 })

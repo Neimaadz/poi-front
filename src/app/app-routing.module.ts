@@ -11,33 +11,25 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 export const routes: Routes = [
     {
-        path: '',
-        component: HomepageComponent
+        path: '', component: HomepageComponent
     },
     {
-        path: 'login',
-        component: LoginComponent
+        path: 'login', component: LoginComponent
     },
     {
-        path: 'signin',
-        component: SigninComponent
+        path: 'signin', component: SigninComponent
     },
     {
-        path: 'poi',
-        component: PoiComponent
+        path: 'poi', component: PoiComponent, canActivate: [AuthenticationGuard]
     },
     {
-        path: 'poi/create',
-        component: PoiCreateComponent
+        path: 'poi/create', component: PoiCreateComponent, canActivate: [AuthenticationGuard]
     },
     {
-        path: 'poi/edit/:id',
-        component: PoiEditComponent
+        path: 'poi/edit/:id', component: PoiEditComponent, canActivate: [AuthenticationGuard]
     },
     {
-        path: 'maps',
-        component: MapsComponent,
-        canActivate: [AuthenticationGuard]  // restrict path only for connected user
+        path: 'maps', component: MapsComponent, canActivate: [AuthenticationGuard]  // restrict path only for connected user
     }
 ];
 

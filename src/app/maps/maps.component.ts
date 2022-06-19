@@ -1,15 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { Poi } from '../models';
 import { MapsService } from './maps.service';
-import { CommonModule } from '@angular/common';
 import { MapMarker } from '@angular/google-maps';
 import { GoogleMap } from '@angular/google-maps';
 import { MapInfoWindow } from '@angular/google-maps';
-import { map } from 'rxjs';
-import { waitForAsync } from '@angular/core/testing';
-import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select/select';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-maps',
@@ -22,7 +17,8 @@ export class MapsComponent implements OnInit {
 
     pois: Poi[] = [];
     markers = [] as any
-    infoContent = ''
+    poi: Poi = new Poi;
+    apiURL = environment.apiURL;
 
     constructor(private mapService: MapsService) {
        
@@ -63,13 +59,16 @@ export class MapsComponent implements OnInit {
           text: myPoi.name,
         },
         title: myPoi.name,
-        info: myPoi.comment,
+        comment: myPoi.comment,
+        image: myPoi.imagePath,
         options: { animation: google.maps.Animation.DROP },
       })
     }
 
-    openInfo(marker: MapMarker, content: string) {
-      this.infoContent = content
+    openInfo(marker: MapMarker, name: string, comment: string, imagePath: string) {
+      this.poi.name = name
+      this.poi.comment = comment
+      this.poi.imagePath = imagePath
       this.info.open(marker)
     }
 
@@ -77,8 +76,8 @@ export class MapsComponent implements OnInit {
     // Options de la carte
     // On met la position du POI en attribut center de façon à être centré dessus
     mapOptions: google.maps.MapOptions = {
-      center: { lat: 49, lng: 2 },
-      zoom : 3,
+      center: { lat: 48.856307094080336, lng: 2.3487893173830603 },
+      zoom : 13,
       minZoom : 3
    }
 
