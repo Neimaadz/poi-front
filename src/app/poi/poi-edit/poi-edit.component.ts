@@ -12,6 +12,7 @@ import { PoiService } from '../poi.service';
 export class PoiEditComponent implements OnInit {
   poiForm: FormGroup;
   poi?: Poi;
+  file!: File;
   error = '';
 
   constructor(
@@ -23,7 +24,6 @@ export class PoiEditComponent implements OnInit {
     this.poiForm = this.fb.group({
       name: '',
       comment: '',
-      imagePath: '',
       lat: '',
       lng:''
     })
@@ -33,10 +33,10 @@ export class PoiEditComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.poiService.getPoi(id).subscribe({
       next: (poi: Poi) => {
+        this.poi = poi;
         this.poiForm.setValue({
           name: poi?.name,
           comment: poi?.comment,
-          imagePath: poi?.imagePath,
           lat: poi?.lat,
           lng: poi?.lng
     });
@@ -51,7 +51,8 @@ export class PoiEditComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     let poiData = this.poiForm.value;
     poiData["id"] = id;
-    this.poiService.editPoi(poiData,id)
+    console.log(poiData);
+    this.poiService.editPoi(poiData,this.file,id)
     .subscribe({
       next: poi => {
         console.log(`poi edited with id ${id}`);
@@ -63,4 +64,7 @@ export class PoiEditComponent implements OnInit {
     });
   }
 
+  onNewFile(file: File) {
+    this.file = file;
+  }
 }
