@@ -28,5 +28,5 @@ export class Trip {
     description!: string;
     origin!: string;
     destination!: string;
-    poisTrip?: Poi[];
+    pois: Poi[];
 }

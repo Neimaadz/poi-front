@@ -9,24 +9,27 @@ import { Poi, Trip } from 'src/app/models';
   templateUrl: './details-pois.component.html',
   styleUrls: ['./details-pois.component.css']
 })
-export class DetailsPoisComponent implements OnChanges {
+export class DetailsPoisComponent implements AfterViewInit {
+    @Input() data: Poi[];
 
-  @Input() data: Poi[];
+    displayedColumns: string[] = ["id", "name", "comment", "lat", "lng"];
+    dataSource: MatTableDataSource<Poi>
 
-  displayedColumns: string[] = ["id", "name", "comment", "lat", "lng"];
-  dataSource: MatTableDataSource<Poi>
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+    constructor(){}
+    
+    ngAfterViewInit() {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    }
 
-  ngOnChanges() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    this.dataSource = new MatTableDataSource<Poi>(this.data);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    ngOnInit() {
+        this.dataSource = new MatTableDataSource<Poi>(this.data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    }
 
-    console.log(this.data);
-  }
 
 }
