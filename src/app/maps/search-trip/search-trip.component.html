@@ -1,0 +1,26 @@
+<main>
+  <div class="container">
+    <div class="mat-typography"><h1>Ajouter un point d'intérêt</h1></div>
+    <form [formGroup]="searchTripForm" (ngSubmit)="searchTrip()">
+      <mat-form-field appearance="outline">
+          <mat-label>Origine</mat-label>
+          <input matInput id="origin" name="origin" formControlName="origin" placeholder="Origine" type="text" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+          <mat-label>Destination</mat-label>
+          <input matInput id="destination" name="destination" formControlName="destination" placeholder="Destination" type="text" required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Valider</button>
+
+      <mat-error *ngIf="error">{{ error }}</mat-error>
+    </form>
+
+  </div>
+
+</main>
+    
+<div class="details-trip">
+  <app-details-trip [trips]="trips"></app-details-trip>
+</div>

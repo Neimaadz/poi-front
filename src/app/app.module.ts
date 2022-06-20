@@ -27,6 +27,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { PoiComponent } from './poi/poi.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PoiCreateComponent } from './poi/poi-create/poi-create.component';
@@ -37,6 +39,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './error.interceptor';
 import { HomepageComponent } from './homepage/homepage.component';
 import { JwtInterceptor } from './jwt.interceptor';
+import { TripComponent } from './trip/trip.component';
+import { SearchTripComponent } from './maps/search-trip/search-trip.component';
+import { DetailsTripComponent } from './maps/search-trip/details-trip/details-trip.component';
+import { DetailsPoisComponent } from './maps/search-trip/details-trip/details-pois/details-pois.component';
 
 @NgModule({
     declarations: [
@@ -49,12 +55,18 @@ import { JwtInterceptor } from './jwt.interceptor';
         PoiEditComponent,
         FileUploadComponent,
         AuthenticationComponent,
-        HomepageComponent
+        HomepageComponent,
+        TripComponent,
+        SearchTripComponent,
+        DetailsTripComponent,
+        DetailsPoisComponent
     ],
     imports: [
         MatGridListModule,
         HttpClientModule,
         MatRadioModule,
+        MatCheckboxModule,
+        MatPaginatorModule,
         MatSelectModule,
         MatTableModule,
         MatSortModule,
