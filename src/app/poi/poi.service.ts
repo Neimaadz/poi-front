@@ -54,6 +54,13 @@ export class PoiService {
       );
   }
 
+  getAllPoiWithoutTrip(): Observable<Poi[]> {
+    return this.http
+      .get<Poi[]>(
+        `${this.serverUrl}${this.poisPath}/notrip`
+      );
+  }
+
   getPoi(poiId: number): Observable<Poi> {
     return this.http
       .get<Poi>(

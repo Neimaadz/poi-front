@@ -8,6 +8,7 @@ import { PoiComponent } from './poi/poi.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { AuthenticationGuard } from './authentication/authentication.guard';
 import { HomepageComponent } from './homepage/homepage.component';
+import { TripComponent } from './trip/trip.component';
 
 export const routes: Routes = [
     {
@@ -20,7 +21,7 @@ export const routes: Routes = [
         path: 'signin', component: SigninComponent
     },
     {
-        path: 'poi', component: PoiComponent, canActivate: [AuthenticationGuard]
+        path: 'poi', component: PoiComponent, canActivate: [AuthenticationGuard]    // restrict path only for connected user
     },
     {
         path: 'poi/create', component: PoiCreateComponent, canActivate: [AuthenticationGuard]
@@ -29,7 +30,10 @@ export const routes: Routes = [
         path: 'poi/edit/:id', component: PoiEditComponent, canActivate: [AuthenticationGuard]
     },
     {
-        path: 'maps', component: MapsComponent, canActivate: [AuthenticationGuard]  // restrict path only for connected user
+        path: 'maps', component: MapsComponent, canActivate: [AuthenticationGuard]
+    },
+    {
+        path: 'trip', component: TripComponent, canActivate: [AuthenticationGuard]
     }
 ];
 

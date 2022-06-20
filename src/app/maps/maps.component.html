@@ -3,9 +3,14 @@
     On y ajoute les options de carte et la position du marker
     Ces données sont définies dans app.component.ts
 -->
+
+<div style="height: auto;">
+    <app-search-trip></app-search-trip>
+</div>
+
 <div class="my-google-map">
     <google-map
-    height="92vh"
+    height="80vh"
     width="100%"
      [options]="mapOptions">
        <map-marker 

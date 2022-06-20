@@ -1,3 +1,5 @@
+import { MatTableDataSource } from "@angular/material/table";
+
 export class User {
     id: number
     username!: string;
@@ -18,4 +20,13 @@ export class Poi {
     comment!: string;
     lat!: string;
     lng!: string;
+    checked: boolean;
+}
+export class Trip {
+    id!: number;
+    name!: string;
+    description!: string;
+    origin!: string;
+    destination!: string;
+    poisTrip?: Poi[];
 }

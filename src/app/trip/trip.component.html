@@ -1,0 +1,46 @@
+<main>
+    <div class="container">
+        <div class="mat-typography"><h1>Ajouter un Trip</h1></div>
+        <form [formGroup]="tripForm" (ngSubmit)="addTrip()">
+            <mat-form-field appearance="outline">
+                <mat-label>Nom</mat-label>
+                <input matInput id="name" name="name" formControlName="name" placeholder="Nom" type="text" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput id="description" name="description" formControlName="description" placeholder="Description" rows="4" required>
+                </textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Origine</mat-label>
+                <input matInput id="origin" name="origin" formControlName="origin" placeholder="origine" type="text" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Destination</mat-label>
+                <input matInput id="destination" name="destination" formControlName="destination" placeholder="destination" type="text" required>
+            </mat-form-field>
+
+            <mat-label>Ajouter des POIs :</mat-label>
+            <mat-grid-list #grid [cols]="cols | async" rowHeight="100px" [gutterSize]="'20px'" >
+                <mat-grid-tile *ngFor="let poi of poisWithoutTrip; let i = index">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{poi.name}}</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-actions>
+                            <mat-checkbox (change)="onChange(poi.id, poi.checked)">Ajouter</mat-checkbox>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+    
+            <button mat-raised-button color="primary" type="submit">Valider</button>
+    
+            <mat-error *ngIf="error">{{ error }}</mat-error>
+        </form>
+  
+    </div>
+</main>
